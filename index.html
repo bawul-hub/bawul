@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>최바울의 포트폴리오</title>
+  <style>
+    :root {
+      --bg-left: #e4e4e4;
+      --bg-right: #262626;
+      --accent: #a2d149; /* 라임 그린 포인트 */
+      --text-dark: #222222;
+      --text-light: #ffffff;
+      --text-muted: #b3b3b3;
+      --card-bg: #333333;
+      --card-border: #444444;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.6;
+      background: var(--bg-right);
+      color: var(--text-light);
+      display: flex;
+    }
+
+    /* 레이아웃 구조 */
+    .resume-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: var(--bg-right);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    /* 좌측 사이드바 */
+    .sidebar {
+      width: 32%;
+      background: var(--bg-left);
+      color: var(--text-dark);
+      padding: 50px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .profile-section {
+      text-align: center;
+    }
+
+    .profile-emoji {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 70px;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      color: #fff;
+    }
+
+    .sidebar h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: #111;
+      font-weight: 800;
+    }
+
+    .tagline {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .sidebar-heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .sidebar-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      background: var(--accent);
+      z-index: -1;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    
+    .info-row .badge {
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #222;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid var(--accent);
+      transition: color 0.2s;
+    }
+    .sidebar a:hover { color: #555; }
+    .link-group { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+    /* 우측 메인 콘텐츠 */
+    .main-content {
+      width: 68%;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section-heading {
+      background: var(--accent);
+      color: #111;
+      display: inline-block;
+      padding: 6px 16px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      margin-top: 0;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .dark-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .text-content p {
+      margin: 0 0 10px 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .text-content p:last-child { margin-bottom: 0; }
+
+    /* 개조식 목록 스타일 */
+    .learning-list {
+      margin: 0;
+      padding-left: 24px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .learning-list li::marker {
+      color: var(--accent);
+    }
+
+    /* 명함 스타일 카드 */
+    .business-card-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .business-card {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border: 1px solid #444;
+      border-left: 6px solid var(--accent);
+      border-radius: 12px;
+      padding: 30px 50px;
+      text-align: center;
+      min-width: 300px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .bc-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin: 0 0 8px 0;
+      letter-spacing: 2px;
+    }
+    .bc-interest {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* 반응형 */
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .resume-wrapper { flex-direction: column; }
+      .sidebar { width: 100%; padding: 40px 20px; text-align: center; align-items: center; }
+      .main-content { width: 100%; padding: 30px 20px; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .info-row { justify-content: center; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-wrapper">
+    
+    <!-- 좌측 사이드바 -->
+    <aside class="sidebar">
+      <div class="profile-section">
+        <div class="profile-emoji" aria-label="프로필 이모티콘">😊</div>
+        <h1>최바울</h1>
+        <div class="tagline">-소속 : 경영학과 3학년<br>-관심 분야 : 마케팅<br>-목표 : 행복</div>
+      </div>
+
+      <div>
+        <div class="sidebar-heading">Contact</div>
+        <div class="info-list">
+          <div class="info-row">
+            <span class="badge" aria-label="이름">👤</span>
+            <span><strong>이름</strong>: 최바울</span>
+          </div>
+          <div class="info-row">
+            <span class="badge" aria-label="소속">🏢</span>
+            <span><strong>소속</strong>: 경영학과 3학년</span>
+          </div>
+          <div class="info-row">
+            <span class="badge" aria-label="관심 분야">💡</span>
+            <span><strong>관심 분야</strong>: 마케팅</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-heading">Hobbies</div>
+        <div class="info-list">
+          <div class="info-row">
+            <span class="badge" aria-label="축구">⚽</span>
+            <span><strong>축구</strong></span>
+          </div>
+          <div class="info-row" style="flex-direction: column;">
+            <div style="display:flex; gap:10px;">
+              <span class="badge" aria-label="게임">🎮</span>
+              <span><strong>게임</strong></span>
+            </div>
+            <div class="link-group" style="padding-left: 34px;">
+              <a href="https://kr.leagueoflegends.com/" target="_blank" rel="noopener noreferrer">리그오브레전드</a> /
+              <a href="https://fconline.nexon.com/main/index" target="_blank" rel="noopener noreferrer">넥슨 FC온라인</a> /
+              <a href="https://www.pubg.com/ko/main" target="_blank" rel="noopener noreferrer">배틀그라운드</a>
+            </div>
+          </div>
+          <div class="info-row" style="flex-direction: column;">
+            <div style="display:flex; gap:10px;">
+              <span class="badge" aria-label="음식">🍜</span>
+              <span><strong>맛있는 음식</strong></span>
+            </div>
+            <div class="link-group" style="padding-left: 34px;">
+              <a href="https://www.google.com/search?q=%EC%B2%AD%EC%A3%BC+맛집" target="_blank" rel="noopener noreferrer">구글검색: 청주맛집</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 우측 메인 콘텐츠 -->
+    <main class="main-content">
+      
+      <!-- 상단 소개 영역 -->
+      <section>
+        <div class="intro-grid">
+          <div>
+            <h2 class="section-heading">간단 소개</h2>
+            <div class="text-content">
+              <p>안녕하세요. 최바울입니다. 경영학과 3학년 학생회장으로 활동하며, 마케팅에 대한 열정을 바탕으로 실무 감각을 키우고 있습니다.</p>
+            </div>
+          </div>
+          <div>
+            <h2 class="section-heading">목표</h2>
+            <div class="text-content">
+              <p>항상 행복하기</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 비전 및 목표 -->
+      <section>
+        <h2 class="section-heading">비전 및 목표</h2>
+        <div class="text-content dark-card" style="text-align: left;">
+          <p>관심 분야를 바탕으로 마케팅 관련 포트폴리오를 확장하고, 학업과 리더십 경험을 활용해 팀의 성과를 높이고 싶습니다.</p>
+        </div>
+      </section>
+
+      <!-- 요즘 배우는 것 (새로 추가된 섹션) -->
+      <section>
+        <h2 class="section-heading">요즘 배우는 것</h2>
+        <div class="text-content dark-card" style="text-align: left;">
+          <ul class="learning-list">
+            <li>데이터 기반 퍼포먼스 마케팅 기법 및 분석 툴 활용법</li>
+            <li>생성형 AI를 활용한 효율적인 콘텐츠 기획 및 제작</li>
+            <li>사용자 경험(UX) 개선을 위한 랜딩페이지 디자인 및 기획</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 하단 명함 스타일 카드 (새로 추가된 섹션) -->
+      <section class="business-card-container">
+        <div class="business-card">
+          <h3 class="bc-name">최바울</h3>
+          <p class="bc-interest">관심사: 마케팅</p>
+        </div>
+      </section>
+
+      <footer>
+        © 2026 최바울 포트폴리오. 모든 내용은 예시입니다.
+      </footer>
+      
+    </main>
+  </div>
+</body>
+</html>
